@@ -357,6 +357,122 @@ class dll : public linked_list
 
 };
 
+class cll : public linked_list
+{
+    public:
+
+        void insert_beg(int x)
+        {
+            nn = create_node(x);
+            if(head==NULL)
+            {
+                head=nn;
+                nn->next=head;
+                return;
+            }
+            ptr=head->prev;
+            ptr->next=nn;
+            nn->prev=ptr;
+            nn->next=head;
+            head->prev=nn;
+            head=nn;
+        }
+
+        void insert_end(int x)
+        {
+            nn = create_node(x);
+            if(head==NULL)
+            {
+                head=nn;
+                nn->next=head;
+                return;
+            }
+            ptr=head;
+            while(ptr->next!=head)
+                ptr=ptr->next;
+            nn->next=head;
+            nn->prev=ptr;
+            ptr->next=nn;
+            head->prev=nn;
+        }
+
+        void insert_atpos(int x,int pos)
+        {
+            if(pos<=0)
+            {
+                cout<<"ERROR : The position can only be greater than 0\n";
+            }
+            else
+            {
+                if(pos==1)
+                    insert_beg(x);
+                else if (pos==count()+1)
+                {
+                    insert_end(x);
+                }
+                else if (pos>count()+1)
+                {
+                    cout<<"ERROR : The position exceeds the total elements in the list\n";
+                }
+                else
+                {
+                    nn = create_node(x);
+                    int i=1;
+                    struct node *ptr1;
+                    ptr=head;
+                    while(i!=pos)
+                    {
+                        ptr1=ptr;
+                        ptr=ptr->next;
+                        i++;
+                    }
+                    ptr1->next=nn;
+                    nn->prev=ptr1;
+                    nn->next=ptr;
+                    ptr->prev=nn;
+
+                    /* Alternate method
+                    nn->prev=ptr->prev;
+                    nn->next=ptr;
+                    ptr->prev=nn;
+                    ptr=nn->prev;
+                    ptr->next=nn;
+                    */
+
+                }
+            }
+        }
+
+        int count()
+        {
+            //cout<<"1\n";
+            int i=0;
+            ptr=head;
+            while(ptr->next!=head)
+            {
+                ptr=ptr->next;
+                i++;
+            }
+            i++;
+            //cout<<"count = "<<i<<"\n";
+            return i;
+        }
+
+        void display()
+        {
+            ptr=head;
+            while(ptr->next!=head)
+            {
+                cout<<ptr->data<<" ";
+                ptr=ptr->next;
+            }
+            cout<<ptr->data;
+            cout<<endl;
+            //cout<<"display\n";
+        }
+
+};
+
 int main()
 {
     sll sl1,sl2;
@@ -415,5 +531,34 @@ int main()
     cout<<"dl2 count = "<<dl2.count()<<endl;
     dl2.display();
     
+    
+    cout<<"\n\n\nCLL\n\n\n";
+    
+    
+    cll cl1,cl2;
+    cl1.insert_beg(3); // 3
+    cl1.insert_end(4); // 3 4
+    cl1.insert_end(7); // 3 4 7
+    cl2.insert_beg(5); // 5
+    cl1.insert_beg(5); // 5 3 4 7
+    cl1.insert_atpos(8,2); // 5 8 3 4 7
+    cl2.insert_atpos(5,3); // ERROR
+    cl2.insert_end(7); // 5 7
+    cl2.insert_end(9); // 5 7 9
+    cl2.insert_atpos(4,3); // 5 7 4 9
+    
+    cl1.display(); // 5 8 3 4 7
+    cl2.display(); // 5 7 4 9
+    /*
+    dl1.delete_beg(); // 8 3 4 7
+    dl2.delete_end(); // 5 7 4
+    dl1.delete_atpos(3); // 8 3 7
+    dl2.delete_beg(); // 7 4
+    dl2.delete_atpos(2); // 7
+    dl1.delete_end();// 8 3
+    cout<<"dl1 count = "<<dl1.count()<<endl;
+    dl1.display();
+    cout<<"dl2 count = "<<dl2.count()<<endl;
+    dl2.display();*/
     return 0;
 }

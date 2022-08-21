@@ -160,7 +160,6 @@ class sll
                 prev->next=ptr->next;
                 free(ptr);
             }
-            
         }
         
         int count()
@@ -256,7 +255,77 @@ class dll : public linked_list
                     nn->prev=ptr1;
                     nn->next=ptr;
                     ptr->prev=nn;
+
+                    /* Alternate method
+                    nn->prev=ptr->prev;
+                    nn->next=ptr;
+                    ptr->prev=nn;
+                    ptr=nn->prev;
+                    ptr->next=nn;
+                    */
+
                 }
+            }
+        }
+
+        void delete_beg()
+        {
+            if(head==NULL)
+            {
+                cout<<"ERROR: The list is already empty so no deletion\n";
+                return;
+            }
+            ptr=head;
+            head=ptr->next;
+            head->prev=NULL;
+            free(ptr);
+        }
+
+        void delete_end()
+        {
+            if(head==NULL)
+            {
+                cout<<"ERROR: The list is already empty so no deletion\n";
+                return;
+            }
+            ptr=head;
+            struct node *ptr1;
+            while(ptr->next!=NULL)
+            {
+                ptr1=ptr;
+                ptr=ptr->next;
+            }
+            ptr1->next=NULL;
+            free(ptr);
+        }
+
+        void delete_atpos(int pos)
+        {
+            if(head==NULL)
+                cout<<"ERROR: The list is already empty so no deletion\n";
+            else if(pos<=0)
+                cout<<"ERROR : The position can only be greater than 0\n";
+            else if(pos==1)
+                delete_beg();
+            else if(pos==count())
+                delete_end();
+            else if(pos>count())
+                cout<<"ERROR : The position exceeds the total elements in the list\n";
+            else
+            {
+                int i=1;
+                ptr=head;
+                struct node *ptr1;
+                while(i!=pos)
+                {
+                    ptr1=ptr;
+                    ptr=ptr->next;
+                    i++;
+                }
+                ptr1->next=ptr->next;
+                free(ptr);
+                ptr=ptr1->next;
+                ptr->prev=ptr1;
             }
         }
 
@@ -301,8 +370,10 @@ int main()
     sl2.insert_end(7); // 5 7
     sl2.insert_end(9); // 5 7 9
     sl2.insert_atpos(4,3); // 5 7 4 9
+    
     sl1.display(); // 5 8 3 4 7
     sl2.display(); // 5 7 4 9
+    
     sl1.delete_beg(); // 8 3 4 7
     sl2.delete_end(); // 5 7 4
     sl1.delete_atpos(3); // 8 3 7
@@ -315,7 +386,7 @@ int main()
     sl2.display();
     
     
-    cout<<"DLL\n\n\n";
+    cout<<"\n\n\nDLL\n\n\n";
     
     
     dll dl1,dl2;
@@ -329,7 +400,20 @@ int main()
     dl2.insert_end(7); // 5 7
     dl2.insert_end(9); // 5 7 9
     dl2.insert_atpos(4,3); // 5 7 4 9
+    
     dl1.display(); // 5 8 3 4 7
     dl2.display(); // 5 7 4 9
+    
+    dl1.delete_beg(); // 8 3 4 7
+    dl2.delete_end(); // 5 7 4
+    dl1.delete_atpos(3); // 8 3 7
+    dl2.delete_beg(); // 7 4
+    dl2.delete_atpos(2); // 7
+    dl1.delete_end();// 8 3
+    cout<<"dl1 count = "<<dl1.count()<<endl;
+    dl1.display();
+    cout<<"dl2 count = "<<dl2.count()<<endl;
+    dl2.display();
+    
     return 0;
 }

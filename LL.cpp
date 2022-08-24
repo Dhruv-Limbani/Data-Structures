@@ -443,6 +443,70 @@ class cll : public linked_list
             }
         }
 
+        void delete_beg()
+        {
+            if(head == NULL)
+            {
+                cout<<"ERROR: The list is already empty so no deletion\n";
+                return;
+            }
+            ptr=head;
+            struct node *ptr1=ptr->prev;
+            head=ptr->next;
+            head->prev=ptr1;
+            ptr1->next=head;
+            free(ptr); 
+        }
+
+        void delete_end()
+        {
+            if(head == NULL)
+            {
+                cout<<"ERROR: The list is already empty so no deletion\n";
+                return;
+            }
+            ptr=head;
+            struct node *ptr1;
+            while(ptr->next!=head)
+            {
+                ptr1=ptr;
+                ptr=ptr->next;
+            }
+            ptr1->next=head;
+            head->prev=ptr1;
+            free(ptr);
+        }
+
+        void delete_atpos(int pos)
+        {
+            if(head==NULL)
+                cout<<"ERROR: The list is already empty so no deletion\n";
+            else if(pos<=0)
+                cout<<"ERROR : The position can only be greater than 0\n";
+            else if(pos==1)
+                delete_beg();
+            else if(pos==count())
+                delete_end();
+            else if(pos>count())
+                cout<<"ERROR : The position exceeds the total elements in the list\n";
+            else
+            {
+                int i=1;
+                ptr=head;
+                struct node *ptr1;
+                while(i!=pos)
+                {
+                    ptr1=ptr;
+                    ptr=ptr->next;
+                    i++;
+                }
+                ptr1->next=ptr->next;
+                free(ptr);
+                ptr=ptr1->next;
+                ptr->prev=ptr1;
+            }
+        }
+
         int count()
         {
             //cout<<"1\n";
@@ -549,16 +613,16 @@ int main()
     
     cl1.display(); // 5 8 3 4 7
     cl2.display(); // 5 7 4 9
-    /*
-    dl1.delete_beg(); // 8 3 4 7
-    dl2.delete_end(); // 5 7 4
-    dl1.delete_atpos(3); // 8 3 7
-    dl2.delete_beg(); // 7 4
-    dl2.delete_atpos(2); // 7
-    dl1.delete_end();// 8 3
-    cout<<"dl1 count = "<<dl1.count()<<endl;
-    dl1.display();
-    cout<<"dl2 count = "<<dl2.count()<<endl;
-    dl2.display();*/
+    
+    cl1.delete_beg(); // 8 3 4 7
+    cl2.delete_end(); // 5 7 4
+    cl1.delete_atpos(3); // 8 3 7
+    cl2.delete_beg(); // 7 4
+    cl2.delete_atpos(2); // 7
+    cl1.delete_end();// 8 3
+    cout<<"cl1 count = "<<cl1.count()<<endl;
+    cl1.display();
+    cout<<"cl2 count = "<<cl2.count()<<endl;
+    cl2.display();
     return 0;
 }

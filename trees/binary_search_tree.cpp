@@ -42,14 +42,23 @@ class BST
         void preorder(NODE* root)
         {
             if(root==NULL)
-            {
                 return;
-            }
             else
             {
                 cout<<root->data<<" ";
                 preorder(root->left);
                 preorder(root->right);
+            }
+        }
+        void inorder(NODE* root)
+        {
+            if(root==NULL)
+                return;
+            else
+            {
+                inorder(root->left);
+                cout<<root->data<<" ";
+                inorder(root->right);
             }
         }
 };
@@ -64,4 +73,6 @@ int main()
     }
     cout<<"\nPreorder Traversal: \n";
     T1.preorder(T1.root);
+    cout<<"\nInorder Traversal: \n";
+    T1.inorder(T1.root);
 }

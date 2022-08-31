@@ -17,11 +17,10 @@ class NODE
 class BST
 {
     public:
-        NODE *root, *nn, *ptr;
+        NODE *root, *nn;
         BST()
         {
             root = NULL;
-            ptr = root;
         }
         NODE* insert(NODE* root, int data)
         {
@@ -61,6 +60,17 @@ class BST
                 inorder(root->right);
             }
         }
+        void postorder(NODE* root)
+        {
+            if(root==NULL)
+                return;
+            else
+            {
+                postorder(root->left);
+                postorder(root->right);
+                cout<<root->data<<" ";
+            }
+        }
 };
 
 int main()
@@ -75,4 +85,6 @@ int main()
     T1.preorder(T1.root);
     cout<<"\nInorder Traversal: \n";
     T1.inorder(T1.root);
+    cout<<"\nPostorder Traversal: \n";
+    T1.postorder(T1.root);
 }

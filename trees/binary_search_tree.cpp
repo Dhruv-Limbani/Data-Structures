@@ -86,7 +86,31 @@ class BST
                 root->left=delete_node(root->left,key);
             else if(key>root->data)
                 root->right=delete_node(root->right,key);
-            
+            else
+            {
+                if(root->left==NULL && root->right==NULL)      // no child
+                    return NULL;
+                else if(root->left==NULL)                      // only right child
+                {
+                    NODE* temp = root->right;
+                    free(root);
+                    return temp;
+                }
+                else if(root->right==NULL)                     // only left child
+                {
+                    NODE* temp = root->left;
+                    free(root);
+                    return temp;
+                }
+
+                /* Inorder successor (smallest node in right subtree)
+                   is replaced by the root with 2 childs
+                */
+                NODE* min = min_value_node(root->right); 
+                root->data=min->data;
+                root->right = delete_node(root->right,min->data);
+            }
+            return root;
         }
 };
 
@@ -104,4 +128,9 @@ int main()
     T1.inorder(T1.root);
     cout<<"\nPostorder Traversal: \n";
     T1.postorder(T1.root);
+
+    cout<<"\nMinimum value = "<<T1.min_value_node(T1.root)->data;
+    T1.delete_node(T1.root,7);
+    cout<<"\nInorder Traversal: \n";
+    T1.inorder(T1.root);
 }

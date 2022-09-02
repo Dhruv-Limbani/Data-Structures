@@ -71,6 +71,23 @@ class BST
                 cout<<root->data<<" ";
             }
         }
+        NODE* min_value_node(NODE* root)
+        {
+            NODE* curr = root;
+            while(curr && curr->left!=NULL)
+                curr=curr->left;
+            return curr;
+        }
+        NODE* delete_node(NODE* root, int key)
+        {
+            if(root==NULL)
+                return root;
+            if(key<root->data)
+                root->left=delete_node(root->left,key);
+            else if(key>root->data)
+                root->right=delete_node(root->right,key);
+            
+        }
 };
 
 int main()

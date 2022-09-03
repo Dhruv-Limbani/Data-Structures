@@ -161,6 +161,20 @@ class sll
                 free(ptr);
             }
         }
+
+        void reverse() 
+        {
+            ptr=head;
+            node *ptr1=NULL,*ptr2=NULL;
+            while(ptr!=NULL)
+            {
+                ptr1=ptr->next;
+                ptr->next=ptr2;
+                ptr2=ptr;
+                ptr=ptr1;
+            }
+            head = ptr2; 
+        }
         
         int count()
         {
@@ -552,14 +566,16 @@ int main()
     sl2.insert_atpos(4,3); // 5 7 4 9
     
     sl1.display(); // 5 8 3 4 7
+    sl1.reverse(); 
+    sl1.display(); // 7 4 3 8 5
     sl2.display(); // 5 7 4 9
     
-    sl1.delete_beg(); // 8 3 4 7
+    sl1.delete_beg(); // 4 3 8 5
     sl2.delete_end(); // 5 7 4
-    sl1.delete_atpos(3); // 8 3 7
+    sl1.delete_atpos(3); // 4 3 5
     sl2.delete_beg(); // 7 4
     sl2.delete_atpos(2); // 7
-    sl1.delete_end();// 8 3
+    sl1.delete_end();// 4 3
     cout<<"sl1 count = "<<sl1.count()<<endl;
     sl1.display();
     cout<<"sl2 count = "<<sl2.count()<<endl;
@@ -626,3 +642,16 @@ int main()
     cl2.display();
     return 0;
 }
+
+/*
+void ReversePrint(LinkedListNode* head) {
+    if(head==NULL)
+        return;
+    ReversePrint(head->next);
+    printf("%d\n",head->val);
+}
+
+how to find the middlemost node in LL
+ans -> using fast ptr and slow ptr
+
+*/

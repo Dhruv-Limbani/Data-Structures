@@ -157,6 +157,100 @@ void pattern10(int n)
 // *
 }
 
+void pattern11(int n){
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=i; j++){
+            cout<<1-(i+j)%2;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern12(int n){
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=2*n; j++){
+            if(j>=i+1 && j<=2*n-i){
+                cout<<" ";
+            }
+            else{
+                cout<<(j<=n)*j+(j>n)*(2*n+1-j);
+            }
+        }
+        cout<<endl;
+    }
+}
+
+void pattern13(int n){
+    int ct=1;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=i; j++){
+            cout<<ct<<" ";
+            ct++;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern14(int n){
+    for(int i=1; i<=n; i++){
+        for(char ch='A'; ch<'A'+i; ch++){
+            cout<<ch;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern15(int n){
+    for(int i=1; i<=n; i++){
+        for(char ch='A'; ch<'A'+n+1-i; ch++){
+            cout<<ch;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern16(int n){
+    for(char i='A'; i<'A'+n; i++){
+        for(char j='A'; j<=i; j++){
+            cout<<i;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern17(int n){
+    int cols = 2*n-1;
+    char ch = 'A'-n;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=cols; j++){
+            if(j<=n-i || j>=n+i) cout<<" ";
+            else{
+                char temp = ch + (j<=n)*(j) + (j>n)*(cols-j+1);
+                cout<<temp;
+            }
+        }
+        cout<<endl;
+        ch++;
+        //  for(int j=1; j<=spaces; j++){
+        //     cout<<" ";
+        //  }
+        //  for(char j=)
+        //  for(int j=1; j<=spaces; j++){
+        //     cout<<" ";
+        //  }
+    }
+}
+
+void pattern18(int n){
+    int ch='A'-1;
+    for(int i=n; i>0; i--){
+        for(char j=ch+i; j<=ch+n; j++){
+            cout<<j;
+        }
+        cout<<endl;
+    }
+}
+
 int main()
 {
     int n, choice;
@@ -192,6 +286,30 @@ int main()
             break;
         case 10:
             pattern10(n);
+            break;
+        case 11:
+            pattern11(n);
+            break;
+        case 12:
+            pattern12(n);
+            break;
+        case 13:
+            pattern13(n);
+            break;
+        case 14:
+            pattern14(n);
+            break;
+        case 15:
+            pattern15(n);
+            break;
+        case 16:
+            pattern16(n);
+            break;
+         case 17:
+            pattern17(n);
+            break;
+        case 18:
+            pattern18(n);
             break;
         default:
             cout<<"Incorrect Choice! Choose between 1 to 10";

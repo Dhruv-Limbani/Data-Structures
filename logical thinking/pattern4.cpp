@@ -1,14 +1,22 @@
 #include<iostream>
 using namespace std;
 
-int main()
-{
-    for(int i=1; i<6; i++){
+void pattern(int n){
+    for(int i=1; i<=n; i++){
         for(int j=1; j<=i; j++){
             cout<<i;
         }
         cout<<"\n";
     }
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter lenth: ";
+    cin>>n;
+    pattern(n);
+    
     return 0;
 }
 

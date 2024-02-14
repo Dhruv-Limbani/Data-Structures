@@ -1,14 +1,20 @@
 #include<iostream>
 using namespace std;
 
-int main()
-{
-    for(int i=5; i>0; i--){
+void pattern(int n){
+    for(int i=n; i>0; i--){
         for(int j=1; j<=i; j++){
             cout<<"*";
         }
         cout<<"\n";
     }
+}
+int main()
+{
+    int n;
+    cout<<"Enter lenth: ";
+    cin>>n;
+    pattern(n);
     return 0;
 }
 

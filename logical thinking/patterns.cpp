@@ -251,6 +251,82 @@ void pattern18(int n){
     }
 }
 
+void pattern19(int n){
+    int space = 0, stars=n;
+    for(int i=1; i<=2*n; i++){
+        if(i>n){
+            stars++;
+            space-=2;
+        }
+        for(int j=1; j<=stars; j++) cout<<"*";
+        for (int j=1; j<=space; j++) cout<<" ";
+        for(int j=1; j<=stars; j++) cout<<"*";
+        if(i<=n){
+            stars--;
+            space+=2;
+        }
+        cout<<endl;
+    }
+}
+
+void pattern20(int n){
+    int space, stars;
+    for(int i=1; i<=2*n-1; i++){
+        if(i>n){
+            stars = 2*n-i;
+            space = 2*n-2*stars;
+        }
+        else{
+            stars=i;
+            space=2*n-2*stars;
+        }
+        for(int j=1; j<=stars; j++) cout<<"*";
+        for (int j=1; j<=space; j++) cout<<" ";
+        for(int j=1; j<=stars; j++) cout<<"*";
+        cout<<endl;
+    }
+}
+
+void pattern21(int n){
+    int stars, space=n-2;
+    for(int i=1; i<=n; i++){
+        if(i==1 || i==n){
+            for(int j=1; j<=n; j++){
+                cout<<"*";
+            }
+        }
+        else{
+            cout<<"*";
+            for (int j=1; j<=n-2; j++) cout<<" ";
+            cout<<"*";
+        }
+        cout<<endl;
+    }
+}
+
+void pattern22(int n){
+    int num = n;
+    for(int i=1; i<=2*n-1; i++){
+        int flag=-1; // initially the num is set to be decreased
+        for(int j=1; j<=2*n-1; j++){
+            if(i<=n){
+                if(j==i) flag=0; // at j=i num stops decreasing
+                if(j==2*n-i) flag=+1; // at j=2*n-i num starts increasing
+                cout<<num;
+                num+=flag;
+            }
+            else{
+                if(j==2*n-i) flag=0; // for i>n at j=2*n-i num stops decreasing
+                if(j==i) flag=+1; // at j=i num starts increasing
+                cout<<num;
+                num+=flag;
+            }
+        }
+        num = n;
+        cout<<endl;
+    }
+}
+
 int main()
 {
     int n, choice;
@@ -310,6 +386,18 @@ int main()
             break;
         case 18:
             pattern18(n);
+            break;
+        case 19:
+            pattern19(n);
+            break;
+        case 20:
+            pattern20(n);
+            break;
+        case 21:
+            pattern21(n);
+            break;
+        case 22:
+            pattern22(n);
             break;
         default:
             cout<<"Incorrect Choice! Choose between 1 to 10";

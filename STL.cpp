@@ -315,6 +315,93 @@ void explainUnorderedMap(){
 
 }
 
+
+bool comp(pair<int,int> p1, pair<int,int> p2) {
+    if(p1.second<p2.second) return true;
+    else if(p1.second>p2.second) return false;
+    else{
+        if(p1.first>p2.first) return true;
+        else return false;
+    }
+}
+
+//  MANDATORY
+void explainExtra(){
+
+    vector<int> a;
+    a.push_back(3);
+    a.push_back(2);
+    a.emplace_back(5);
+    a.insert(a.begin()+1,7);
+    a.push_back(1);
+
+    int arr[] = {3,6,23,6,8,-5,2};
+
+    // syntax : sort(start iterator, last iterator) ; last iterator points to addrs next to last element
+    // it's like [start,end) end is not included
+    sort(a.begin(),a.begin()+a.size()); // to sort vector
+
+    for(auto it: a){
+        cout<<it<<" ";
+    }
+    cout<<endl;
+
+    sort(arr,arr+sizeof(arr)/sizeof(arr[0])); // to sort array
+
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+
+    cout<<endl;
+    // {1,3,5,2}
+    sort(arr+2,arr+4);
+    // {1,3,2,5}
+
+    sort(arr, arr+4, greater<int>()); // sorts in increasing order
+
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    //custom sorting
+    pair<int,int> p[] = {{1,2},{2,1},{4,1}}; // array of pair
+
+    // to sort p in increasing order of 2nd element in pair but if the 2nd element is same then sort in decreasing order of first element
+
+    sort(p,p+sizeof(p)/sizeof(p[0]),comp); // if comp returns false we the sort function swaps the two elements
+    // while writing comparator or comp function for sorting, always analyse in terms of 2 elements
+    // {{4,1},{2,1},{1,2}} 
+
+    for(auto it: p){
+        cout<<"("<<it.first<<", "<<it.second<<") ";
+    }
+    cout<<endl;
+
+    int num = 7;
+    int cnt = __builtin_popcount(num); // returns the number of set bits (1s) in the binary form of num
+    cout<<cnt<<endl;
+
+    long long llnum = 2748176583753;
+    cnt = __builtin_popcountll(llnum);
+    cout<<cnt<<endl;
+
+    string s = "123";
+    sort(s.begin(),s.end());
+    // to print all the permutation of string s
+    do{
+        cout<<s<<endl;
+    } while(next_permutation(s.begin(),s.end()));
+
+    // if s was 213, then it would have printed 213,231,321 and null
+    // hence to get all the permutation of string, it is important that string is sorted
+
+
+    int maxi = *max_element(arr,arr+4); // the maximum element in the container
+    int mini = *min_element(arr,arr+4);
+    cout<<mini<<" "<<maxi;
+    
+}
+
 int main()
 {
     //explainPair();
@@ -326,6 +413,6 @@ int main()
     //explainSet();
     // explainMultiSet();
     // explainMap();
-
+    explainExtra();
     return 0;
 }

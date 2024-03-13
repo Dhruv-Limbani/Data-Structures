@@ -256,5 +256,6 @@ int main()
     // is_amstrong(num);
     // divisors(num);
     // divisors_optimized(num);
+    // cout<<isPrime(num);
     return 0;
 }

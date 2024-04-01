@@ -36,6 +36,37 @@ void merge_sort(int *arr, int l, int h){
     return;
 }
 
+int partition(int *arr, int l, int h){
+    int p=arr[h],j=l-1;
+    for(int i=l; i<h; i++){
+        if(arr[i]<p){
+            j++;
+            swap(arr[i],arr[j]);
+        }
+    }
+    swap(arr[j+1],arr[h]);
+    return j+1;
+}
+
+int partition_2(int *arr, int l, int h){
+    int p=arr[h],i=l,j=h;
+    while(i<j){
+        while(arr[i]<=p && i<h) i++;
+        while(arr[j]>=p && j>l) j--;
+        if(i<j)
+            swap(arr[i],arr[j]);
+    }
+    swap(arr[i],arr[h]);
+    return i;
+}
+
+void quick_sort(int *arr, int l, int h){
+    if(l>=h) return;
+    int p = partition_2(arr, l, h);
+    quick_sort(arr,l,p-1);
+    quick_sort(arr,p+1,h);
+}
+
 
 int main()
 {
@@ -43,7 +74,8 @@ int main()
     cin>>n;
     int arr[n];
     for(int i=0; i<n; i++) cin>>arr[i];
-    merge_sort(arr,0,n-1);
+    // merge_sort(arr,0,n-1);
+    quick_sort(arr,0,n-1);
     for(auto it: arr) cout<<it<<" ";
     return 0;
 }

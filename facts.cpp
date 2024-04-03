@@ -11,4 +11,8 @@
     always start with brute force, better and then most optimal solution (even for the interviews)
     sometimes the problem might only have brute force and most optimal solution. Hence the levels of
     optimizing problem varies.
+
+    extra space vs space used by algorithm -- 
+    watch "Rotate Array by K places | Union, Intersection of Sorted Arrays | Move Zeros to End | Arrays Part-2"
+    in youtube from time stamp 5:20
 */

@@ -11,7 +11,7 @@ vector<int> getFrequencies(vector<int>& v) {
     unordered_map<int, int> hash;
     vector<int> ans(2);
     for(auto it: v) hash[it]++;
-    int max=INT_MIN, min=INT_MAX, max_freq_elem, min_freq_elem;
+    int max=INT_MIN, min=INT_MAX;
     for(auto it: hash){
         if( it.second>max || (it.second==max && it.first<ans[0]) ){
             max = it.second;

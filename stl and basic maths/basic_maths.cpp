@@ -67,7 +67,7 @@ string check_palindrome(int x)
     // works only for x in the signed 32-bit integer range [-(2^31), 2^31 - 1]
 }
 
-void gcp_brute_force(int n, int m){
+void gcd_brute_force(int n, int m){
     if(n<m){
         n = n + m;
         m = n - m;
@@ -89,28 +89,6 @@ void gcp_brute_force(int n, int m){
     */
 }
 
-void gcd_brute_force(int n, int m){
-    if(n<m){
-        n = n + m;
-        m = n - m;
-        n = n - m;
-    }
-    int gcd = m;
-    while(gcd>0){
-        if(n%gcd==0 && m%gcd==0){
-            cout<<gcd<<endl;
-            break;
-        }
-        gcd--;
-    }
-    /*
-    we all know that the GCD value of two numbers cannot exceed the smallest of the two numbers
-    hence we intiate the gcd from smallest number and decrement it while we get a number that divides both the number
-    complexity
-    worst case that is for gcd(23,21), it will be O(m) where m is the smallest number
-    space complexity: requires an additional variable "gcd"
-    */
-}
 
 void gcd_optimized(int n, int m){
     n+=m;

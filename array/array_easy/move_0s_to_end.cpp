@@ -31,6 +31,21 @@ void better_approach(int *arr, int n){
     SC: O(1)
 */
 
+void optimal_approach(vector<int>& nums) {
+    int n = nums.size();
+    int i=0;
+    for(int j=0; j<n; j++){
+        if(nums[j]){
+            swap(nums[i],nums[j]);
+            i++;
+        }
+    }
+}
+/*
+    TC: O(N)
+    SC: O(1)
+*/
+
 int main()
 {
     int n;

@@ -1,6 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+    Problem Statement: Given a non-empty array of integers arr, every element appears twice except for one. Find that single one.
+*/
+
 int brute_force(int arr[], int n){
     int ct;
     for(int i=0; i<n; i++){

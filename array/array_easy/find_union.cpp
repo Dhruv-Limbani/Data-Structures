@@ -1,6 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+Problem Statement: Given two sorted arrays, arr1, and arr2 of size n and m. Find the union of two sorted arrays.
+
+The union of two arrays can be defined as the common and distinct elements in the two arrays.
+NOTE: Elements in the union should be in ascending order.
+*/
+
 
 void brute_force(int a[], int b[], int n, int m, int *arr){
     for(int i=0; i<n+m; i++) arr[i] = INT_MAX;
@@ -95,16 +102,18 @@ void optimal_approach(int a[], int b[], int n, int m, int* arr){
         }
         
     }
-    while(a[i]<=arr[k-1] && i<n) i++;
-    while(b[j]<=arr[k-1] && j<m) j++;
-    while(a[i]>arr[k-1] && i<n){
-        arr[k]=a[i];
-        k++;
+    while(i<n){
+        if(a[i]!=arr[k-1]){
+            arr[k]==a[i];
+            k++;
+        }
         i++;
     }
-    while(b[j]>arr[k-1] && j<m){
-        arr[k]=b[j];
-        k++;
+    while(j<m){
+        if(b[j]!=arr[k-1]){
+            arr[k]==b[j];
+            k++;
+        }
         j++;
     }
 }

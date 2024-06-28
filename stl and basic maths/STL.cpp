@@ -83,6 +83,9 @@ void explainVector(){
 
     cout<<vec2.size(); // number of elements in the vec
 
+    cout<<vec2.back(); //Returns a read-only (constant) reference to the data at the last element of the %vector.
+
+    cout<<vec2.front(); // Returns a read/write reference to the data at the first element of the %vector.
     // {10,20}
     vec2.pop_back(); // {10}
 

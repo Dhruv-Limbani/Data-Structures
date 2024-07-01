@@ -1,6 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+    Problem Statement: Given an array of N integers, write a program to return an element that 
+    occurs more than N/2 times in the given array. You may consider that such an element always exists in the array.
+*/
+
 int brute_force(int *arr, int n){
 	int th=n/2 + n%2, ct;
 	for(int i=0; i<n-1; i++){

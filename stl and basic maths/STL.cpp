@@ -81,6 +81,8 @@ void explainVector(){
     vector<int> copy(2,50); //{50, 50}
     vec2.insert(vec2.begin(), copy.begin(), copy.end()); // inserts the entire 'copy' vector
 
+    
+
     cout<<vec2.size(); // number of elements in the vec
 
     cout<<vec2.back(); //Returns a read-only (constant) reference to the data at the last element of the %vector.

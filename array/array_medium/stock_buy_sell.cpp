@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+    Problem Statement: You are given an array of prices where prices[i] is the price of a given stock on an ith day.
+    
+    You want to maximize your profit by choosing a single day to buy one stock and choosing a 
+    different day in the future to sell that stock. Return the maximum profit you can achieve from 
+    this transaction. If you cannot achieve any profit, return 0.
+
+
+*/
+
 int brute_force(int arr[], int n){
     int mx_p=0, p;
     for(int i=0; i<n-1; i++){

@@ -1,6 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+    Problem Statement: Given an integer array arr, find the contiguous subarray (containing at least one number) which
+    has the largest sum and returns its sum and prints the subarray.
+*/
+
 int brute_force(int *arr, int n){
     int s=0,e=0;
     long long mx_sm=0, sum;

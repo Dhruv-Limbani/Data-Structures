@@ -1,5 +1,12 @@
 #include <bits/stdc++.h> 
 using namespace std;
+
+/*
+    Problem Statement: Given an array Arr[] of integers, rearrange the numbers of the given array 
+    into the lexicographically next greater permutation of numbers.
+    If such an arrangement is not possible, it must rearrange to the lowest possible order (i.e., sorted in ascending order).
+*/
+
 void generate_permutations(vector<int> a, vector<bool> check, vector<vector<int>>&b){
     for(int i=1; i<=check.size()-1; i++){
         if(!check[i]){
@@ -40,38 +47,6 @@ void generate_permutations_using_swap(int p, vector<int> arr, vector<vector<int>
 
 void using_inbuilt_func(vector<int> &arr, int n){
     next_permutation(arr.begin(),arr.begin()+n);
-}
-
-void better_approach(vector<int> &arr, int n){
-    vector<bool> check(n+1,0);
-    int idx,f=0;
-    for(int i=n-1; i>=0; i--){
-        check[arr[i]] = 1;
-        for(int j=arr[i]+1; j<=n; j++){
-            if(check[j]){
-                arr[i] = j;
-                check[j] = 0;
-                idx=i;
-                i=-1;
-                f=1;
-                break;
-            }
-        }
-    }
-    if(f){
-        for(int i=idx+1; i<n; i++){
-            for(int j=1; j<=n; j++){
-                if(check[j]){
-                    arr[i] = j;
-                    check[j] = 0;
-                    break;
-                }
-            }
-        }
-    }
-    else{
-        for(int i=1; i<=n; i++) arr[i-1] = i;
-    }
 }
 
 void optimal_approach(vector<int> &arr, int n){
@@ -151,6 +126,13 @@ void optimal_approach_2(vector<int> &arr, int n){
 }
 
 /*
+    finding the break point (the point that breaks ascending order from last element i.e. from right to left direction)
+    if no break point means it is the last permutation then reverse the array
+    
+    if there is a break point then swap it with the first element from rhs which is greater
+
+    now reverse the ascending array i.e. array from [breakpoint+1,n-1]
+
     TC: O(N + N + N) = O(N)
     SC: O(1)
 */

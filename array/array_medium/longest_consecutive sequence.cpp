@@ -15,26 +15,46 @@ using namespace std;
 
 int brute_force_approach(vector<int>&arr) {
     int n = arr.size();
-    int mx=1;
+    int mx=0;
     for(int i=0; i<n; i++){
         int ct = 0;
-        for(int j=arr[i]; j<=arr[i]+n-1; j++){
-            int f=0;
-            for(auto it: arr){
-                if(it==j){
+        int f=1, x=arr[i];
+        do{
+            f=0;
+            for(int j=0; j<n; j++){
+                if(arr[j]==x){
+                    ct++;
+                    x++;
                     f=1;
                     break;
                 }
             }
-            if(f) ct++;
-            else break;
-        }
+        }while(f==1);
         mx = max(mx,ct);
     }
     return mx;
 }
 /*
-    TC: O(n^3)
+
+    Algorithm:
+    To begin, we will utilize a loop to iterate through each element one by one.
+    Next, for every element x, we will try to find the consecutive elements like 
+    x+1, x+2, x+3, and so on using the linear search algorithm in the given array.
+    
+    Within a loop, our objective is to locate the next consecutive element x+1. 
+    
+    If this element is found, we increment x by 1 and continue the search for x+2. 
+    Furthermore, we increment the length of the current sequence (cnt) by 1. 
+    
+    This process repeats until step 2.2 occurs.
+
+    If a specific consecutive element, for example, x+i, is not found, we will halt the search 
+    for subsequent consecutive elements such as x+i+1, x+i+2, and so on. Instead, we will take 
+    into account the length of the current sequence (cnt).
+    
+    Among all the lengths we get for all the given array elements, the maximum one will be the answer.
+
+    TC: O(n^2)
     SC: O(1)
 */
 
@@ -82,6 +102,24 @@ int optimal_approach(vector<int>&arr) {
 }
 
 /*
+    Algorithm:
+    We will declare 2 variables, 
+
+    ‘cnt’ → (to store the length of the current sequence), 
+    ‘longest’ → (to store the maximum length).
+
+    First, we will put all the array elements into the set data structure.
+    For every element, x, that can be a starting number(i.e. x-1 does not exist in the set) we will do the following:
+        We will set the length of the current sequence(cnt) to 1.
+        
+        Then, again using the set, we will search for the consecutive elements such as x+1, x+2, 
+        and so on, and find the maximum possible length of the current sequence. 
+        This length will be stored in the variable ‘cnt’.
+
+    After that, we will compare ‘cnt’ and ‘longest’ and update the variable ‘longest’ 
+    with the maximum value (i.e. longest = max(longest, cnt)).
+    Finally, we will have the answer i.e. ‘longest’.
+
     TC: O(N + 2N)
     SC: O(N)
 */

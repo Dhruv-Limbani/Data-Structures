@@ -1,6 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+    Variety-1
+
+    Problem Statement:
+
+    There’s an array ‘A’ of size ‘N’ with an equal number of positive and negative elements. 
+    Without altering the relative order of positive and negative elements, you must return 
+    an array of alternately positive and negative values.
+
+    Note: Start the array with positive elements.
+*/
+
+
 void brute_force(int *arr, int n){
     for(int i=0; i<n; i++){
         if(i%2==0 && arr[i]<0){
@@ -31,6 +44,7 @@ void brute_force(int *arr, int n){
     } 
 }
 /*
+    // can skip this one
     TC: O(N^3)
     SC: O(1)
 */
@@ -49,6 +63,7 @@ void better_approach(int *arr, int n){
 }
 
 /*
+    Segregating pos and neg elements in different vectors and then placing them at correct place in final array.
     TC: O(N + N)
     SC: O(N)
 
@@ -70,12 +85,31 @@ void optimal_approach(int *arr, int s){
     }
 }
 /*
+    Approach:
+
+    In this optimal approach, we will try to solve the problem in a single pass and 
+    try to arrange the array elements in the correct order in that pass only.
+    
+    We know that the resultant array must start from a positive element so we initialize the positive index 
+    as 0 and negative index as 1 and start traversing the array such that whenever we see the first positive element, 
+    it occupies the space at 0 and then posIndex increases by 2 (alternate places).
+    
+    Similarly, when we encounter the first negative element, it occupies the position at index 1, 
+    and then each time we find a negative number, we put it on the negIndex and it increments by 2.
+    
+    When both the negIndex and posIndex exceed the size of the array, we see that the whole array 
+    is now rearranged alternatively according to the sign.
+
+
     TC: O(N)
     SC: O(N)
     
 */
 
 //  the above 3 algos work if there are equal number of positive and negative element
+
+
+// variety 2: unequal number of pos and neg elements
 
 void optimal_approach_2(int *arr, int n){
     vector<int> pos, neg;

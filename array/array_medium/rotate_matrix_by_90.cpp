@@ -23,6 +23,9 @@ void brute_force(vector<vector<int>>& matrix) {
 }
 
 /*
+    Take first row, put it in last column of dummy matrix
+    take second row, put it in 2nd last column and so on
+    
     TC: O(N*N + N*N)
     SC: O(N*N)
 */
@@ -45,6 +48,8 @@ void optimal(vector<vector<int>>& matrix) {
 }
 
 /*
+    Take transpose of the matrix and reverse each row of the matrix
+
     TC: O(N*N/2 + N*N/2) = O(N*N)
     SC: O(1)
 */

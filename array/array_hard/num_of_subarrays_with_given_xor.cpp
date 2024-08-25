@@ -56,7 +56,7 @@ int optimal_approach(vector<int> &A, int B) {
 }
 /*
     Here, we are using the same concept as that of subarray with sum k.
-    in an arrat a[0...n] lets say for a subarray a[i...j] to have xor = k,
+    in an array a[0...n] lets say for a subarray a[i...j] to have xor = k,
     xor of a[0...i] i.e. the array to right side of subarray should be x^k 
     where x is xor of a[0...j] i.e. both right side + subarray included.
 

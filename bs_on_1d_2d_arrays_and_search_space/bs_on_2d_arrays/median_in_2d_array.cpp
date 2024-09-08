@@ -32,16 +32,13 @@ using namespace std;
 bool is_count_ok(vector<vector<int>> &matrix, int m, int n, int x){
     int ct = 0;
     for(int i=0; i<m; i++){
-        int l=0, h=n-1, mid, ans=n;
+        int l=0, h=n-1, mid;
         while(l<=h){
             mid = (l+h)/2;
-            if(matrix[i][mid]>x){
-                ans = mid;
-                h=mid-1;
-            }
+            if(matrix[i][mid]>x) h=mid-1;
             else l=mid+1;
         }
-        ct += ans;
+        ct += (h+1);
     }
     if (ct>(n*m/2)) return true;
     else return false;

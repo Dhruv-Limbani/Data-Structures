@@ -43,3 +43,24 @@ void postorder(TreeNode* root, vector<int> &arr){
         arr.push_back(root->data);
     }
 }
+
+vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int>> ans = {};
+    if(root==NULL) return ans; 
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        int size = q.size();
+        vector<int> lvl;
+        for(int i=0; i<size; i++){
+            lvl.push_back(q.front()->data);
+            if(q.front()->left != NULL)
+                q.push(q.front()->left);
+            if(q.front()->right != NULL)
+                q.push(q.front()->right);
+            q.pop();
+        }
+        ans.push_back(lvl);
+    }
+    return ans;
+}

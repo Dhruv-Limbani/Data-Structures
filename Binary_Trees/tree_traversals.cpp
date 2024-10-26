@@ -64,3 +64,38 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     }
     return ans;
 }
+
+vector<int> preorderTraversal_iterative(TreeNode* root) {
+    vector<int> ans;
+    if(root==NULL) return ans;
+    stack<TreeNode*> s;
+    s.push(root);
+    while(!s.empty()){
+        TreeNode* top = s.top();
+        s.pop();
+        ans.push_back(top->data);
+        if(top->right != NULL) s.push(top->right);
+        if(top->left != NULL) s.push(top->left);
+    }
+    return ans;
+}
+
+vector<int> inorderTraversal_iterative(TreeNode* root) {
+    vector<int> ans;
+    if(root==NULL) return ans;
+    stack<TreeNode*> s;
+    TreeNode* node = root;
+    while(true){
+        if(node!=NULL) {
+            s.push(node);
+            node = node->left;
+        }
+        else{
+            if(s.empty()) break;
+            ans.push_back(s.top()->data);
+            node = s.top()->right;
+            s.pop();
+        }
+    }
+    return ans;
+}

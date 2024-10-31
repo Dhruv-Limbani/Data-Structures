@@ -99,3 +99,24 @@ vector<int> inorderTraversal_iterative(TreeNode* root) {
     }
     return ans;
 }
+
+vector<int> postorderTraversal_iterative_using_one_stack(TreeNode* root) {
+    vector<int> ans;
+    if(root==NULL) return ans;
+    stack<TreeNode*> s;
+    TreeNode* top = root;
+    s.push(root);
+    while(!s.empty()){
+        if((s.top()->left == top || s.top()->right == top) || (s.top()->left==NULL && s.top()->right==NULL)){
+            top = s.top();
+            ans.push_back(top->data);
+            s.pop();
+        }
+        else{
+            TreeNode* temp = s.top();
+            if(temp->right!=NULL) s.push(temp->right);
+            if(temp->left!=NULL) s.push(temp->left);
+        }
+    }
+    return ans;
+}

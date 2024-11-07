@@ -28,6 +28,7 @@ int climbStairs(int n) {
 }
 
 /*
+    DP recurrence relation:
     Key Idea: A step k can be reached either from the last step (k-1) or second last step (k-2). 
     So total number of ways to reach the step k = num_ways(k-1) + num_ways(k-2)
 */

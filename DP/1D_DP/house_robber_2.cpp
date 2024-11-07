@@ -65,7 +65,7 @@ int rob(vector<int>& nums) {
 }
 
 /*
-    DP relation
+    DP recurrence relation
     dp[i] = maximum sum till ith element
     dp[i] = max(nums[i] + dp[i-2], dp[i-1]);
 

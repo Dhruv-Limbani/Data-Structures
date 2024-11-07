@@ -51,7 +51,7 @@ int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
 }
 
 /*
-    Key idea:
+    DP recurrence relation:
     ways[i][j] = ways[i-1][j] (coming from top, if (i-1,j) is not an obstacle) 
                 + ways[i][j-1] (coming from right, if (i,j-1) is not an obstacle);
 */

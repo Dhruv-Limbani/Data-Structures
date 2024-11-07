@@ -48,7 +48,7 @@ int ninjaTraining(int n, vector<vector<int>> &points)
 }
 
 /*
-    Key Idea : max(day n) = max(
+    DP recurrence relation : max(day n) = max(
                                 0th activity(day n) + max(1st activity(day n-1), 2nd activity(day n-1)),
                                 1st activity(day n) + max(0th activity(day n-1), 2nd activity(day n-1)),
                                 2nd activity(day n) + max(0th activity(day n-1), 1st activity(day n-1))

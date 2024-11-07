@@ -41,6 +41,6 @@ int uniquePaths(int m, int n) {
 }
 
 /*
-    Key Idea:
+    DP recurrence relation:
     ways[i][j] = ways[i-1][j] (coming from top) + ways[i][j-1] (coming from right);
 */

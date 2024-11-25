@@ -3,38 +3,41 @@ using namespace std;
 
 class MinStack {
 public:
-    long long int size,arr[30000],tp,min_val;
+    long long int *arr, size, tp, min;
     MinStack() {
-        size=0;
-        tp=-1;
-        min_val=0;
+        arr = new long long int[30001];
+        size = 0;
+        tp = -1;
+        min = long(INT_MAX);
     }
+    
     void push(long long int val) {
-        if(size==0) min_val = val;
-        if(val<min_val){
-            long long int temp = min_val;
-            min_val = val;
-            val = 2*val - temp;
+        if(val<min){
+            arr[++tp] = 2*val - min;
+            min = val;
         }
-        arr[++tp] = val;
+        else arr[++tp] = val;
         size++;
     }
     void pop() {
         if(size==0) return;
-        else{
-            if(arr[tp] < min_val) min_val = 2*min_val-arr[tp];
-            tp--;
-            size--;
-            if(size==0) min_val=0;
+        if(arr[tp]<min){
+            min = 2*min-arr[tp];
         }
+        tp--;
+        size--;
     }
+    
     int top() {
-        if(arr[tp] < min_val) return min_val;
-        return arr[tp];
+        if(tp>=0){
+            if(arr[tp]<min) return min;
+            else return arr[tp];
+        } 
+        return -1;
     }
     
     int getMin() {
-        return min_val;
+        return min;
     }
 };
 

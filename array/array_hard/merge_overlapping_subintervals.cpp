@@ -3,7 +3,7 @@ using namespace std;
 
 vector<vector<int>> optimal_approach(vector<vector<int>>& intervals) {
     vector<vector<int>> ans;
-    int n = intervals.size(),ct=-1;
+    int n = intervals.size();
     sort(intervals.begin(),intervals.end());
     ans.push_back(intervals[0]);
     for(int i=1; i<n; i++){

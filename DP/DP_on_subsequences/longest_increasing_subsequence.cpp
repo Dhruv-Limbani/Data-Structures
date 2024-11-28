@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// dp
+// dp memiozation
 int lengthOfLIS(vector<int>& nums, vector<vector<int>> &dp, int ind, int prev_ind){
     if(ind>=nums.size()) return 0;
     if(dp[ind][prev_ind+1]!=-1) return dp[ind][prev_ind+1];
@@ -10,6 +10,38 @@ int lengthOfLIS(vector<int>& nums, vector<vector<int>> &dp, int ind, int prev_in
         take = 1 + lengthOfLIS(nums, dp, ind+1,ind);
     }
     return dp[ind][prev_ind+1] = max(take, not_take);
+}
+
+// tabulation
+int lengthOfLIS(vector<int>& nums) {
+    vector<vector<int>> dp(nums.size()+1, vector<int>(nums.size()+1,0));
+    for(int ind=nums.size()-1; ind>=0; ind--){
+        for(int prev_ind=ind-1; prev_ind>=-1; prev_ind--){
+            int not_take = dp[ind+1][prev_ind+1], take = 0;
+            if(prev_ind==-1 || nums[ind]>nums[prev_ind]){
+                take = 1 + dp[ind+1][ind+1];
+            }
+            dp[ind][prev_ind+1] = max(take, not_take);
+        }
+    }
+    return dp[0][0];
+}
+
+//space optimization
+int lengthOfLIS(vector<int>& nums) {
+    vector<int> prev(nums.size()+1,0);
+    for(int ind=nums.size()-1; ind>=0; ind--){
+        vector<int> curr=prev;
+        for(int prev_ind=ind-1; prev_ind>=-1; prev_ind--){
+            int not_take = prev[prev_ind+1], take = 0;
+            if(prev_ind==-1 || nums[ind]>nums[prev_ind]){
+                take = 1 + prev[ind+1];
+            }
+            curr[prev_ind+1] = max(take, not_take);
+        }
+        prev = curr;
+    }
+    return prev[0];
 }
 
 // binary search

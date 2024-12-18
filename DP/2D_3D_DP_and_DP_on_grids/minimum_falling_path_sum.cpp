@@ -2,7 +2,7 @@
 using namespace std;
 
 
-// recursive + memiozation - 1
+// memiozation - 1
 int min_sum(vector<vector<int>>& matrix, vector<vector<int>>& dp, int n, int i, int j){
     if(j<0 || j>=n) return INT_MAX;
     if(i==0) return dp[i][j] = matrix[i][j];
@@ -24,7 +24,7 @@ int minFallingPathSum(vector<vector<int>>& matrix) {
 }
 
 
-// recursive + memiozation - 2
+// memiozation - 2
 
 int min_sum(vector<vector<int>>& matrix, vector<vector<int>>& dp, int n, int i, int j){
     if(j<0 || j>=n) return INT_MAX;
@@ -44,7 +44,7 @@ int minFallingPathSum(vector<vector<int>>& matrix) {
     return mn;
 }
 
-// iterative + memiozation
+// tabulation
 int minFallingPathSum(vector<vector<int>>& matrix) {
     int n = matrix.size(), mn = INT_MAX;
     vector<vector<int>> dp(n, vector<int>(n,0));

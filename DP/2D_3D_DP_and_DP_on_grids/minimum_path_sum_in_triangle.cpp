@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// recursive + memiozation
+// memiozation
 int solve(vector<vector<int>>& triangle, vector<vector<int>> &dp, int i, int j){
     if(i==0 && j==0) return dp[i][j] = triangle[i][j];
     if(i<j || j<0) return INT_MAX;
@@ -22,7 +22,7 @@ int minimumTotal(vector<vector<int>>& triangle) {
     return solve(triangle, dp, n-1, n-1);
 }
 
-// iterative + memiozation
+// tabulation
 int minimumTotal(vector<vector<int>>& triangle) {
     int n = triangle.size(), mn = INT_MAX;
     vector<vector<int>> dp(n,vector<int>(n,-1));

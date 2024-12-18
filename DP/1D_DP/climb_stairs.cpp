@@ -7,7 +7,7 @@ int num_ways(int n){
     return num_ways(n-1) + num_ways(n-2);
 }
 
-// DP - Tabulation/Memiozation
+// DP - Tabulation
 int climbStairs(int n) {
     vector<int> ways(n+1,1);
     for(int i=0; i<=n; i++){

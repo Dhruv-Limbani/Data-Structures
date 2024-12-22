@@ -14,7 +14,8 @@ int maxDepth(TreeNode* root, int &diameter) {
     if(root!=NULL){
         int left_height = maxDepth(root->left, diameter);
         int right_height = maxDepth(root->right, diameter);
-        diameter = max(diameter, left_height + right_height);
+        // not doing 1 + lh + rh because we are finding diameter as length of path = # nodes along the path -1
+        diameter = max(diameter, left_height + right_height);   
         return 1 + max(left_height, right_height);
     }
     return 0;

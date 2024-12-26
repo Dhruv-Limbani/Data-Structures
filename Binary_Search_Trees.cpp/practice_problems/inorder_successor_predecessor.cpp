@@ -1,0 +1,1 @@
+// similar to finding floor and ceil but successor will be strictly greater and predecessor will be strictly smaller 

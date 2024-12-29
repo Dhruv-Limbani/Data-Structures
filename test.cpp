@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-    int a = '9'-'0';
+    bool a = "abc"!="abc";
     cout<<a;
     return 0;
 }

@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// one approach, LPS of string = LCS(string, reveresed string)
+
+// approach 2
+// recurrence relation:
+// LPS(s[i..j]) = max { 2*(s[i]==s[j]) + lps(s[i+1..j-1]), lps(s[i..j-1]), lps(s[i+1..j]) }
 int longestPalindromeSubseq(string s) {
     int n = s.size();
     vector<vector<int>> dp(n,vector<int>(n,0));
@@ -50,3 +55,5 @@ int longestPalindromeSubseq(string s) {
     cout<<LPS;
     return dp[0][n-1];
 }
+
+// recurrence 

@@ -16,3 +16,39 @@ int maxProfit(int k, vector<int>& prices) {
     vector<vector<vector<int>>> dp(prices.size(), vector<vector<int>>(2, vector<int>(k+1, -1)));
     return mp(prices, dp, 0, 0, k);
 }
+
+// tabulation
+int maxProfit(int k, vector<int>& prices) {
+    vector<vector<vector<int>>> dp(prices.size()+1, vector<vector<int>>(2, vector<int>(k+1, 0)));
+    int n = prices.size();
+    for(int i=n-1; i>=0; i--){
+        for(int b=0; b<=1; b++){
+            for(int t=1; t<=k; t++){
+                int ignore = dp[i+1][b][t], buy = 0, sell = 0;
+                if(b) sell = prices[i] +  dp[i+1][0][t-1];
+                else buy = -prices[i] + dp[i+1][1][t];
+                dp[i][b][t] = max(ignore, max(buy, sell));
+            }
+        }
+    }
+    return dp[0][0][k];
+}
+
+// space optimized
+int maxProfit(int k, vector<int>& prices) {
+    vector<vector<int>> prev(2, vector<int>(k+1, 0));
+    int n = prices.size();
+    for(int i=n-1; i>=0; i--){
+        vector<vector<int>> curr(2, vector<int>(k+1, 0));
+        for(int b=0; b<=1; b++){
+            for(int t=1; t<=k; t++){
+                int ignore = prev[b][t], buy = 0, sell = 0;
+                if(b) sell = prices[i] +  prev[0][t-1];
+                else buy = -prices[i] + prev[1][t];
+                curr[b][t] = max(ignore, max(buy, sell));
+            }
+        }
+        prev = curr;
+    }
+    return prev[0][k];
+}

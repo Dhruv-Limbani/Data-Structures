@@ -44,7 +44,27 @@ int lengthOfLIS(vector<int>& nums) {
     return prev[0];
 }
 
-// binary search
+
+// approach two: dp[i] indicates length of LIS ending with element at index i
+int lengthOfLIS(int n, vector<int>& arr) {
+    vector<int> dp(n, 1), prev(n,-1);
+    for(int i=0; i<n; i++){
+        for(int p=0; p<=i-1; p++){
+            if(arr[p]<arr[i] && dp[i]<1+dp[p]){
+                dp[i] = 1+dp[p];
+                prev[i] = p;
+            }
+        }
+    }
+    int mx = 1;
+    for(int i=0; i<n; i++){
+        mx = max(mx,dp[i]);
+    }
+    return mx;
+}
+
+
+// approach 3: binary search
 void find_replacement_and_replace(vector<int> &ans, int x){
     int low=0, high=ans.size()-1;
     while(low<=high){

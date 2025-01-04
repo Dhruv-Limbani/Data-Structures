@@ -15,6 +15,7 @@ class STACK{
             tp = -1;
         }
         void push(int x){
+            if(tp==mx_size-1) return;
             tp+=1;
             arr[tp] = x;
         }

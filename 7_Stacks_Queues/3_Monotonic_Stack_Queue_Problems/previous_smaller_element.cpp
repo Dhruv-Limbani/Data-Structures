@@ -3,7 +3,7 @@ using namespace std;
 
 // similar to Next Greater Element-1
 // Monotonic Stack
-vector<int> nextGreaterElements(vector<int>& A) {
+vector<int> PSE(vector<int>& A) {
     stack<int> st;
     vector<int> ans(A.size(),-1);
     for(int i=0; i<A.size(); i++){

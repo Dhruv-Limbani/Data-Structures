@@ -15,6 +15,5 @@ int totalFruits(vector<int> &arr, int k) {
         }
         right++;
     }
-    mx = max(mx, right-left);
     return mx;
 }

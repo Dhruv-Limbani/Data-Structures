@@ -25,36 +25,35 @@ using namespace std;
 */
 
 
-vector<int> spiralMatrix(vector<vector<int>>&m) {
+vector<int> spiralOrder(vector<vector<int>>& m) {
     int mt=m[0].size(), n=m.size();
     int t = 0, b = n-1, l = 0, r=mt-1, ct=0;
     vector<int> ans;
     while(t<=b && l<=r){
-        if(ct%4==0){
-            for(int j=l; j<=r; j++){
-                ans.push_back(m[t][j]);
-            }
-            t++;
+        for(int j=l; j<=r; j++){
+            ans.push_back(m[t][j]);
         }
-        else if(ct%4==1){
-            for(int i=t; i<=b; i++){
-                ans.push_back(m[i][r]);
-            }
-            r--;
+        t++;
+
+        for(int i=t; i<=b; i++){
+            ans.push_back(m[i][r]);
         }
-        else if(ct%4==2){
+        r--;
+
+        if(t<=b){
             for(int j=r; j>=l; j--){
                 ans.push_back(m[b][j]);
             }
             b--;
         }
-        else if(ct%4==3){
+
+        if(l<=r){
             for(int i=b; i>=t; i--){
                 ans.push_back(m[i][l]);
             }
             l++;
         }
-        ct++;
+
     }
     return ans;
 }

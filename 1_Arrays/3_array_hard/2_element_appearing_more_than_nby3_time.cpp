@@ -4,13 +4,13 @@ using namespace std;
 vector<int> brute_force(vector<int>& nums) {
     vector<int> ans;
     for(auto it: nums){
+        if(ans.size()==2) break;
         if(ans.size() == 0 || it!=ans[0])
         {
             int ct=0;
             for(auto it2: nums) if(it==it2) ct++;
             if(ct>nums.size()/3) ans.push_back(it);
         }
-        if(ans.size()==2) break;
     }
     return ans;
 }
@@ -27,12 +27,12 @@ vector<int> brute_force_2(vector<int>& nums) {
     vector<int> ans;
     map<int,int> m;
     for(auto it: nums){
+        if(ans.size()==2) break;
         if(ans.size() == 0 || it!=ans[0])
         {
             m[it]++;
             if(m[it]>nums.size()/3) ans.push_back(it);
         }
-        if(ans.size()==2) break;
     }
     return ans;
 }

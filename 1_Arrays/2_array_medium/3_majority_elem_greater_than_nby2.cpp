@@ -42,12 +42,12 @@ int better_approach(int *arr, int n){
 int optimal_approach(int *arr, int n){
     int ele,ct=0;
     for(int i=0; i<n; i++){
-    if (ct == 0) {
-        ele = arr[i];
-        ct = 1;
-        } 
-    else if (ele == arr[i]) ct++;
-    else ct--;
+        if (ct == 0) {
+            ele = arr[i];
+            ct = 1;
+            } 
+        else if (ele == arr[i]) ct++;
+        else ct--;
     }
 	return ele;
 }

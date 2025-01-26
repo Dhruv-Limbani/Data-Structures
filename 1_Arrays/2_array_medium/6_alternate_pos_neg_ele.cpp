@@ -14,41 +14,6 @@ using namespace std;
 */
 
 
-void brute_force(int *arr, int n){
-    for(int i=0; i<n; i++){
-        if(i%2==0 && arr[i]<0){
-            int j=i;
-            while(arr[j]<0 & j<n) j++;
-            if(j<n){
-                swap(arr[i],arr[j]);
-                while (j - 1 > i) {
-                    swap(arr[j - 1], arr[j]);
-                    j--;
-                }
-            }
-            else return;
-        }
-        else if(i%2!=0 && arr[i]>0){
-            int j=i;
-            while(arr[j]>0 & j<n) j++;
-            if(j<n){
-                swap(arr[i],arr[j]);
-                while (j - 1 > i) {
-                    swap(arr[j - 1], arr[j]);
-                    j--;
-                }
-            }
-            else return;
-        }
-
-    } 
-}
-/*
-    // can skip this one
-    TC: O(N^3)
-    SC: O(1)
-*/
-
 void better_approach(int *arr, int n){
     vector<int> pos, neg;
     for(int i=0; i<n; i++){

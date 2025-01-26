@@ -72,50 +72,27 @@ void better_approach(int a[], int b[], int n, int m, int *arr){
     SC: O(2*(N+M))
 */
 
-
-void optimal_approach(int a[], int b[], int n, int m, int* arr){
-    int i=0,j=0,k=0;
-    if(a[i]<=b[j]){
-        arr[k] = a[i];
-        k++;
-        i++;
-    } 
-    else{
-        arr[k]=b[j];
-        k++;
-        j++;
-    }
+// Optimal Approach
+vector<int> findUnion(vector<int> &a, vector<int> &b) {
+    vector<int> arr;
+    int i=0,j=0,n=a.size(), m=b.size();
     while(i<n && j<m){
-        while(a[i]<=arr[k-1] && i<n) i++;
-        while(b[j]<=arr[k-1] && j<m) j++;
+        while(i<n && (arr.size() && a[i]<=arr.back())) i++;
+        while(j<m && (arr.size() && b[j]<=arr.back())) j++;
         if(i<n && j<m){
-            if(a[i]<=b[j]){
-                arr[k] = a[i];
-                k++;
-                i++;
-            } 
-            else{
-                arr[k] = b[j];
-                k++;
-                j++;
-            }
+            if(a[i]<=b[j]) arr.push_back(a[i++]);
+            else arr.push_back(b[j++]);
         }
-        
     }
     while(i<n){
-        if(a[i]!=arr[k-1]){
-            arr[k]==a[i];
-            k++;
-        }
+        if(a[i]!=arr.back()) arr.push_back(a[i]);
         i++;
     }
     while(j<m){
-        if(b[j]!=arr[k-1]){
-            arr[k]==b[j];
-            k++;
-        }
+        if(b[j]!=arr.back()) arr.push_back(b[j]);
         j++;
     }
+    return arr;
 }
 /*
 Two Pointer approach
@@ -124,22 +101,3 @@ Two Pointer approach
 
     Does not work for unsorted arrays
 */
-
-int main()
-{
-    int n,m;
-    cin>>n>>m;
-    int a[n],b[m];
-    for(int i=0; i<n; i++) cin>>a[i];
-    for(int i=0; i<m; i++) cin>>b[i];
-    int arr[n+m];
-    for(int i=0; i<n+m; i++) arr[i] = INT_MAX;
-    // brute_force(a,b,n,m,arr);
-    // better_approach(a,b,n,m,arr);
-    optimal_approach(a,b,n,m,arr);
-    for(int i=0; i<n+m; i++){
-        if(arr[i]==INT_MAX) break;
-        cout<<arr[i]<<" ";
-    }
-    return 0;
-}

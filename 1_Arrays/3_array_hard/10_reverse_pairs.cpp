@@ -65,7 +65,7 @@ int reversePairs(vector<int>& nums) {
 /*
     Logic of counting pairs from two sorted subarrays(additional part):
     if element an in left subarray is greater than an twice the element in right one 
-    then all the elements post it will also be greater than twice the element in right subarray hence all of them will be pairs
+    then all the elements following it will also be greater than twice the element in right subarray hence all of them will be pairs
 
     Using merge sort with modification
     TC: O(2nlogn)

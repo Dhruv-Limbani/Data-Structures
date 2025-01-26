@@ -61,7 +61,7 @@ int optimal_approach_2(int arr[], int n){
     XOR Property:
         a^a = 0
         a^0 = a
-    TC: O(2N)
+    TC: O(N)
     SC: O(1)
 */
 

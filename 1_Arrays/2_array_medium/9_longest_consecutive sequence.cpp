@@ -63,7 +63,7 @@ int better_approach(vector<int>&arr) {
     sort(arr.begin(),arr.begin()+n);
     int i=0, j=1, mx=1, ct=1;
     while(j<n){
-        while(arr[j]==arr[i] && j<n) j++;
+        while(j<n && arr[j]==arr[i]) j++;
         if(j==n) break;
         else if(arr[j]-arr[i]==1){
             ct++;
